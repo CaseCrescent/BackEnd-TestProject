@@ -1,0 +1,53 @@
+@startuml Class
+left to right direction
+package "HotelBooking" {
+    class "<<Application>>\nHotelBookingService" as HotelBookingService{}
+
+    class "<<Resource>>\nHotels" as ResourceHotels{
+        <<GET>> +getHotels(): Hotel[]
+        <<POST>> +createHotel(): Hotel
+    }
+
+    class "<<Resource>>\nHotel" as ResourceHotel {
+        <<GET>> +getHotel(): Hotel
+        <<PUT>> +updateHotel(): Hotel
+        <<DELETE>> +deleteHotel(): void
+    }
+
+    class "<<Representation>>\nHotel" as RepresentationHotel {
+        -name: String
+        -address: String
+        -tel: String
+    }
+
+    class "<<Resource>>\nBookings" as ResourceBookings {
+        <<GET>> +getBookings(): Booking[]
+        <<POST>> +addBooking(): Booking
+    }
+
+    class "<<Resource>>\nBooking" as ResourceBooking {
+        <<GET>> +getBooking(): Booking
+        <<PUT>> +updateBooking(): Booking
+        <<DELETE>> +deleteBooking(): void
+    }
+
+    class "<<Representation>>\nBooking" as RepresentationBooking {
+        -bookingDate: Date
+        -numOfNights: Number
+        -user: ObjectId
+        -hotel: ObjectId
+    }
+}
+
+HotelBookingService ..> ResourceHotels:"/hotels\n<<Path>>"
+ResourceHotels ..> ResourceHotel: "/{hotelId}\n<<Path>>"
+ResourceHotel ..> RepresentationHotel: "<<use>>"
+
+HotelBookingService ..> ResourceBookings:"/bookings\n<<Path>>"
+ResourceBookings ..> ResourceBooking: "/{bookingId}\n<<Path>>"
+ResourceBooking ..> RepresentationBooking: "<<use>>"
+
+' Routing from Hotel to Bookings
+ResourceHotel ..> ResourceBookings: "/bookings\n<<Path>>"
+
+@enduml

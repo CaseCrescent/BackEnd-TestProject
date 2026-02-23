@@ -1,0 +1,49 @@
+@startuml UseCase
+left to right direction
+actor "Registered User" as user
+actor "Admin" as admin
+
+package "Hotel Booking System" {
+  usecase "Register / Login / Logout" as UC_Auth
+  usecase "Manage Hotels" as UC_ManageHotel
+  usecase "Book a Hotel" as UC_Book
+  usecase "Manage Own Bookings" as UC_ManageOwnBook
+  usecase "Manage Any Bookings" as UC_ManageAnyBook
+}
+
+user --> UC_Auth
+user --> UC_Book
+user --> UC_ManageOwnBook
+
+admin --> UC_Auth
+admin --> UC_ManageHotel
+admin --> UC_ManageAnyBook
+
+note right of UC_Book
+  - View
+  - Book up to 3 nights
+  - Limit to own records
+end note
+
+note right of UC_ManageOwnBook
+  - View
+  - Create
+  - Update
+  - Delete
+end note
+
+note right of UC_ManageHotel
+  - View
+  - Create
+  - Update
+  - Delete
+end note
+
+note right of UC_ManageAnyBook
+  - View
+  - Update
+  - Delete
+end note
+
+@enduml
+
