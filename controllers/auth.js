@@ -106,8 +106,8 @@ exports.logout = async (req, res, next) => {
 
 //**Add**//
 
-// @desc    Delete current user
-// @route   DELETE /api/v1/auth/me
+// @desc    Delete current user/admin
+// @route   DELETE /api/v1/auth/delete
 // @access  Private
 exports.deleteMe = async (req, res, next) => {
     try {
@@ -115,9 +115,9 @@ exports.deleteMe = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'User deleted successfully'
+            message: 'Account deleted successfully'
         });
     } catch (err) {
-        res.status(500).json({ success: false, message: 'Cannot delete user' });
+        res.status(500).json({ success: false, message: 'Cannot delete account' });
     }
 }
