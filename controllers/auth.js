@@ -112,12 +112,8 @@ exports.logout = async (req, res, next) => {
 exports.deleteMe = async (req, res, next) => {
     try {
         await User.findByIdAndDelete(req.user.id);
-
-        res.status(200).json({
-            success: true,
-            message: 'Account deleted successfully'
-        });
+        res.status(200).json({ success: true, message: 'Account deleted successfully' });
     } catch (err) {
         res.status(500).json({ success: false, message: 'Cannot delete account' });
     }
-}
+};

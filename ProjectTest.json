@@ -232,6 +232,66 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get Me Admin",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ADMIN_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/v1/auth/me",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Me User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{USER_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/v1/auth/me",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -833,7 +893,9 @@
                   "    pm.response.to.have.status(200);",
                   "});"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -997,6 +1059,30 @@
       ]
     }
   ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
   "variable": [
     {
       "key": "URL",
@@ -1004,11 +1090,11 @@
     },
     {
       "key": "ADMIN_TOKEN",
-      "value": ""
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWVmN2Y2MzQzMzhlMjJlYzM2YzliMyIsImlhdCI6MTc3MjAyNTg1NCwiZXhwIjoxNzc0NjE3ODU0fQ.P1zW9dfVT6yOmcWspZVdar6hjVhz3Pq4LAE9DzscDik"
     },
     {
       "key": "USER_TOKEN",
-      "value": ""
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWVmN2ZhMzQzMzhlMjJlYzM2YzliNSIsImlhdCI6MTc3MjAyNTg1OCwiZXhwIjoxNzc0NjE3ODU4fQ.11HtYZfut9KQ4bEizQuNg7xZduA6500B1XDpFMuFZ9Y"
     },
     {
       "key": "USER_BOOKING_ID",
