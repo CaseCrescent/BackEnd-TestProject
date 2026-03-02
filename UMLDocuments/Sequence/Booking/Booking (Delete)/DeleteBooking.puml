@@ -1,0 +1,29 @@
+@startuml Delete Booking (DELETE)
+header Hotel Booking Sequence Diagram
+title "Delete Booking (DELETE)"
+
+participant "Client" as client
+participant "<<javaScript>>\n:server" as server
+participant "<<router>>\n:bookings" as routerBookings
+participant "<<controllers>>\n:bookings" as controllersBookings
+participant "<<model>>\n:Booking" as modelBooking
+database "<<MongoDB>>\n:Database" as Database
+
+client->server ++:req.delete('/api/v1/bookings/:id')
+server->routerBookings ++:app.use('/api/v1/bookings', bookings)
+routerBookings -> controllersBookings ++:deleteBooking()
+
+' Check existing booking
+controllersBookings->modelBooking ++:findById(req.params.id)
+modelBooking ->Database ++: BookingSchema
+Database --> modelBooking --: booking
+modelBooking --> controllersBookings --: booking
+
+' Delete booking
+controllersBookings->modelBooking ++:deleteOne()
+modelBooking ->Database ++: BookingSchema
+Database --> modelBooking --: result
+controllersBookings <-- modelBooking --:result
+controllersBookings->client --:response
+
+@enduml
