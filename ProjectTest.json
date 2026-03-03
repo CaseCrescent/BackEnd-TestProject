@@ -971,6 +971,100 @@
           "response": []
         },
         {
+          "name": "*ADD* Get Me Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code should be 401 Unauthorized\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.collectionVariables.unset(\"ADMIN_TOKEN\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ADMIN_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/v1/auth/me",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "*ADD* Get Me User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code should be 401 Unauthorized\", function () {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "pm.collectionVariables.unset(\"USER_TOKEN\");"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{USER_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{URL}}/api/v1/auth/me",
+              "host": [
+                "{{URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Logout Admin",
           "event": [
             {
@@ -979,9 +1073,13 @@
                 "exec": [
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
-                  "});"
+                  "});",
+                  "",
+                  "pm.collectionVariables.unset(\"ADMIN_TOKEN\");"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -1022,9 +1120,14 @@
                 "exec": [
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
-                  "});"
+                  "});",
+                  "",
+                  "// ล้าง token หลัง logout",
+                  "pm.collectionVariables.unset(\"USER_TOKEN\");"
                 ],
-                "type": "text/javascript"
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -1087,14 +1190,6 @@
     {
       "key": "URL",
       "value": "http://localhost:5000"
-    },
-    {
-      "key": "ADMIN_TOKEN",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWVmN2Y2MzQzMzhlMjJlYzM2YzliMyIsImlhdCI6MTc3MjAyNTg1NCwiZXhwIjoxNzc0NjE3ODU0fQ.P1zW9dfVT6yOmcWspZVdar6hjVhz3Pq4LAE9DzscDik"
-    },
-    {
-      "key": "USER_TOKEN",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWVmN2ZhMzQzMzhlMjJlYzM2YzliNSIsImlhdCI6MTc3MjAyNTg1OCwiZXhwIjoxNzc0NjE3ODU4fQ.11HtYZfut9KQ4bEizQuNg7xZduA6500B1XDpFMuFZ9Y"
     },
     {
       "key": "USER_BOOKING_ID",
