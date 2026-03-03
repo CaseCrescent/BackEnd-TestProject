@@ -1,6 +1,6 @@
-@startuml Logout User (GET)
+@startuml Logout User/Admin (GET)
 header Hotel Booking Sequence Diagram
-title "Logout User (GET)"
+title "Logout User/Admin (GET)"
 
 participant "Client" as client
 participant "<<javaScript>>\n:server" as server

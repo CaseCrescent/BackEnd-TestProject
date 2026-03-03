@@ -1,6 +1,6 @@
-@startuml Login User (POST)
+@startuml Login User/Admin (POST)
 header Hotel Booking Sequence Diagram
-title "Login User (POST)"
+title "Login User/Admin (POST)"
 
 participant "Client" as client
 participant "<<javaScript>>\n:server" as server
