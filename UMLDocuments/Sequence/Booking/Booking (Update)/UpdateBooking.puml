@@ -7,7 +7,7 @@ participant "<<javaScript>>\n:server" as server
 participant "<<router>>\n:bookings" as routerBookings
 participant "<<controllers>>\n:bookings" as controllersBookings
 participant "<<model>>\n:Booking" as modelBooking
-database "<<MongoDB>>\n:Database" as Database
+database "<<MongoDB>>\n:bookings" as Database
 
 client->server ++:req.put('/api/v1/bookings/:id')
 server->routerBookings ++:app.use('/api/v1/bookings', bookings)

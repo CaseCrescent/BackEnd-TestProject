@@ -9,7 +9,7 @@ participant "<<router>>\n:bookings" as routerBookings
 participant "<<controllers>>\n:bookings" as controllersBookings
 participant "<<model>>\n:Hotel" as modelHotel
 participant "<<model>>\n:Booking" as modelBooking
-database "<<MongoDB>>\n:Database" as Database
+database "<<MongoDB>>\n:bookings" as Database
 
 client->server ++:req.post('/api/v1/hotels/:hotelId/bookings')
 server->routerHotels ++:app.use('/api/v1/hotels', hotels)
